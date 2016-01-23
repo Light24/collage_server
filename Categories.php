@@ -1,9 +1,7 @@
 <?php
   require_once("Mysql.php");
 ?>
-
 <?php
-
   class Categories
   {
     private static $m_instnace;
@@ -29,9 +27,8 @@
 
     public function add($name, $iid)
     {
-      $query = sprintf('INSERT INTO cats(name, iid) VALUE (%s, %d)', $name, $iid);
+      $query = sprintf('INSERT INTO cats(name, iid) VALUE ("%s", %d)', $name, $iid);
       Mysql::instance()->query($query);
     }
-
   }
 ?>

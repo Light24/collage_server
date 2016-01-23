@@ -1,7 +1,6 @@
 <?php
   require_once("Mysql.php");
 ?>
-
 <?php
 
   class CollagesManager
@@ -20,12 +19,25 @@
       return self::$m_instance;
     }
 
-    public function add($cid, $vid, $iid1, $iid2)
+    public function add($cid, $iid)
     {
-      $query = sprintf('INSERT INTO collages(cid, vid, iid_first, iid_second) VALUE (%d, %d, %d, %d)', $cid, $vid, $iid1, $iid2);
+      $query = sprintf('INSERT INTO collages(cid, iid) VALUE (%d, %d)', $cid, $iid);
       Mysql::instance()->query($query);
     }
 
+    public function get($count)
+    {
+      $query = "SELECT * FROM collages LIMIT " . $count;
+      Mysql::instance()->query($query);
+      return Mysql::instance()->fetch_assoc_all();
+    }
+
+    public function getByCat($cid)
+    {
+      $query = "SELECT * FROM collages WHERE cid = " . $cid;
+      Mysql::instance()->query($query);
+      return Mysql::instance()->fetch_assoc_all();
+    }
 
   }
 

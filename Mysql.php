@@ -15,7 +15,7 @@
     private function __construct()
     {
       $this->mysql_link = mysql_connect($this->config['host'], $this->config['user'], $this->config['password']);
-      mysql_select_db('collage', $this->mysql_link);
+      mysql_select_db($this->config ['database'], $this->mysql_link);
     }
 
     function __destruct()

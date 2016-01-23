@@ -29,7 +29,7 @@
       $file_content = fread($file, $file_size);
       fclose($file);
 
-      $query = sprintf("INSERT INTO images (name, data, size) VALUES ('%s', '%s', %s)", $file_name, mysql_escape_string($file_content), $file_size);
+      $query = sprintf('INSERT INTO images (name, data, size) VALUES ("%s", "%s", %s)', $file_name, addslashes($file_content), $file_size);
       Mysql::instance()->query($query);
 
       $query = "SELECT LAST_INSERT_ID()";
